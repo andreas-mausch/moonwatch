@@ -14,8 +14,10 @@ html, body {
 #background-moon {
     width: 100%;
     height: 100%;
+    background-color: black;
     background-image: url("../image/moon_phases_image.jpg");
-    background-size: 1600px;
+    background-size: 1500px;
+    background-position: -1110px -1840px;
 }
 
 #components-main {

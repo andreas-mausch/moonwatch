@@ -28,8 +28,34 @@
     }
 
     function moonPhase() {
+        var positions = [
+                         "-1110px -1840px",
+                         "-45px -50px",
+                         "-405px -50px",
+                         "-760px -50px",
+                         "-1120px -50px",
+                         "-35px -410px",
+                         "-390px -410px",
+                         "-750px -410px",
+                         "-1110px -410px",
+                         "-35px -1840px",
+                         "-390px -1840px",
+                         "-750px -1840px",
+                         "-35px -1480px",
+                         "-390px -1480px",
+                         "-750px -1480px",
+                         "-1110px -1480px",
+                         "-35px -770px",
+                         "-390px -770px",
+                         "-750px -770px",
+                         "-1110px -770px",
+                         "-35px -1125px",
+                         "-390px -1125px",
+                         "-750px -1125px",
+                         "-1110px -1125px",
+        ];
         var element = document.querySelector("#background-moon");
-        element.style.backgroundPosition = "65% 59.5%";
+        element.style.backgroundPosition = positions[0];
     }
 
     /**
