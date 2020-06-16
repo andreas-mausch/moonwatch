@@ -11,10 +11,11 @@ html, body {
     overflow: hidden;
 }
 
-#background {
+#background-moon {
     width: 100%;
     height: 100%;
-    background-image: url("../image/watch_bg.png");
+    background-image: url("../image/moon_phases_image.jpg");
+    background-size: 1600px;
 }
 
 #components-main {

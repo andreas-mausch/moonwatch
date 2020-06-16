@@ -27,6 +27,11 @@
         element.style.transform = "rotate(" + angle + "deg)";
     }
 
+    function moonPhase() {
+        var element = document.querySelector("#background-moon");
+        element.style.backgroundPosition = "65% 59.5%";
+    }
+
     /**
      * Updates the hour/minute/second hands according to the current time
      * @private
@@ -41,6 +46,8 @@
         rotateElement("hand-main-hour", (hour + (minute / 60) + (second / 3600)) * 30);
         rotateElement("hand-main-minute", (minute + second / 60) * 6);
         rotateElement("hand-main-second", second * 6);
+
+        moonPhase();
     }
 
     /**
