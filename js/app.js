@@ -38,13 +38,6 @@
                          "-390px -410px",
                          "-750px -410px",
                          "-1110px -410px",
-                         "-35px -1840px",
-                         "-390px -1840px",
-                         "-750px -1840px",
-                         "-35px -1480px",
-                         "-390px -1480px",
-                         "-750px -1480px",
-                         "-1110px -1480px",
                          "-35px -770px",
                          "-390px -770px",
                          "-750px -770px",
@@ -53,9 +46,24 @@
                          "-390px -1125px",
                          "-750px -1125px",
                          "-1110px -1125px",
+                         "-35px -1480px",
+                         "-390px -1480px",
+                         "-750px -1480px",
+                         "-1110px -1480px",
+                         "-35px -1840px",
+                         "-390px -1840px",
+                         "-750px -1840px",
         ];
+
+        var illumination = window.SunCalc.getMoonIllumination(toJsDate(tizen.time.getCurrentDateTime()));
+
+        var position = positions[Math.round(positions.length * illumination.phase)];
         var element = document.querySelector("#background-moon");
-        element.style.backgroundPosition = positions[0];
+        element.style.backgroundPosition = position;
+    }
+
+    function toJsDate(tzDate) {
+        return new Date(tzDate.getFullYear(), tzDate.getMonth(), tzDate.getDate(), tzDate.getHours(), tzDate.getMinutes(), tzDate.getSeconds(), tzDate.getMilliseconds());
     }
 
     /**
