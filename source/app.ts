@@ -1,7 +1,7 @@
 import '../config.xml'
 import '../css/style.scss'
 
-import suncalc from 'suncalc'
+import moonPhase from './moonPhase'
 
 const rotateElement = (elementID: string, angle: number) => {
   const element = document.querySelector("#" + elementID) as HTMLElement
@@ -13,36 +13,7 @@ const toJsDate = (tzDate: TZDate) => {
 }
 
 const updateMoonPhase = () => {
-  const positions = [
-                   "-1110px -1840px",
-                   "-45px -50px",
-                   "-405px -50px",
-                   "-760px -50px",
-                   "-1120px -50px",
-                   "-35px -410px",
-                   "-390px -410px",
-                   "-750px -410px",
-                   "-1110px -410px",
-                   "-35px -770px",
-                   "-390px -770px",
-                   "-750px -770px",
-                   "-1110px -770px",
-                   "-35px -1125px",
-                   "-390px -1125px",
-                   "-750px -1125px",
-                   "-1110px -1125px",
-                   "-35px -1480px",
-                   "-390px -1480px",
-                   "-750px -1480px",
-                   "-1110px -1480px",
-                   "-35px -1840px",
-                   "-390px -1840px",
-                   "-750px -1840px",
-  ];
-
-  const illumination = suncalc.getMoonIllumination(toJsDate(tizen.time.getCurrentDateTime()));
-
-  const position = positions[Math.round(positions.length * illumination.phase)];
+  const position = moonPhase(toJsDate(tizen.time.getCurrentDateTime()))
   const element = document.querySelector("#background-moon") as HTMLElement;
   element.style.backgroundPosition = position;
 }

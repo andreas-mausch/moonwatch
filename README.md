@@ -28,6 +28,12 @@ npm run build
 npm run lint
 ```
 
+### Test
+
+```bash
+npm run test
+```
+
 ### Package to .wgt
 
 ```bash
