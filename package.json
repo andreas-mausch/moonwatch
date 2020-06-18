@@ -10,7 +10,7 @@
     "build": "webpack --mode=production",
     "package": "tizen package --type wgt -- ./build/",
     "install": "tizen install -n ./build/moonwatch.wgt",
-    "run": "tizen run -p KJAMc748fQ"
+    "run": "tizen run -p $npm_package_tizenPackage"
   },
   "dependencies": {
     "suncalc": "1.8.0"
