@@ -20,20 +20,13 @@ import suncalc from 'suncalc'
  */
 
 (function() {
-    /**
-     * Rotates element with a specific ID
-     * @private
-     * @param {string} elementID - ID of the element to be rotated
-     * @param {number} angle - angle of rotation
-     */
-    function rotateElement(elementID, angle) {
-        var element = document.querySelector("#" + elementID);
-
+    function rotateElement(elementID: string, angle: number) {
+        const element = document.querySelector("#" + elementID) as HTMLElement
         element.style.transform = "rotate(" + angle + "deg)";
     }
 
     function moonPhase() {
-        var positions = [
+        const positions = [
                          "-1110px -1840px",
                          "-45px -50px",
                          "-405px -50px",
@@ -60,28 +53,23 @@ import suncalc from 'suncalc'
                          "-750px -1840px",
         ];
 
-        var illumination = suncalc.getMoonIllumination(toJsDate(tizen.time.getCurrentDateTime()));
+        const illumination = suncalc.getMoonIllumination(toJsDate(tizen.time.getCurrentDateTime()));
 
-        var position = positions[Math.round(positions.length * illumination.phase)];
-        var element = document.querySelector("#background-moon");
+        const position = positions[Math.round(positions.length * illumination.phase)];
+        const element = document.querySelector("#background-moon") as HTMLElement;
         element.style.backgroundPosition = position;
     }
 
-    function toJsDate(tzDate) {
+    function toJsDate(tzDate: any) {
         return new Date(tzDate.getFullYear(), tzDate.getMonth(), tzDate.getDate(), tzDate.getHours(), tzDate.getMinutes(), tzDate.getSeconds(), tzDate.getMilliseconds());
     }
 
-    /**
-     * Updates the hour/minute/second hands according to the current time
-     * @private
-     */
     function updateTime() {
-        var datetime = tizen.time.getCurrentDateTime(),
+        const datetime = tizen.time.getCurrentDateTime(),
             hour = datetime.getHours(),
             minute = datetime.getMinutes(),
             second = datetime.getSeconds();
 
-        // Rotate the hour/minute/second hands
         rotateElement("hand-main-hour", (hour + (minute / 60) + (second / 3600)) * 30);
         rotateElement("hand-main-minute", (minute + second / 60) * 6);
         rotateElement("hand-main-second", second * 6);
@@ -89,10 +77,6 @@ import suncalc from 'suncalc'
         moonPhase();
     }
 
-    /**
-     * Sets default event listeners.
-     * @private
-     */
     function bindEvents() {
         // Add an event listener to update the screen immediately when the device wakes up
         document.addEventListener("visibilitychange", function() {
@@ -107,10 +91,6 @@ import suncalc from 'suncalc'
         });
     }
 
-    /**
-     * Initiates the application
-     * @private
-     */
     function init() {
         bindEvents();
 
@@ -120,5 +100,5 @@ import suncalc from 'suncalc'
         }, 1000);
     }
 
-    window.onload = init();
+    window.onload = init;
 }());

@@ -18,7 +18,7 @@ const copyFiles = new CopyWebpackPlugin({
 });
 
 const config: webpack.Configuration = {
-  entry: ['./js/app.js'],
+  entry: ['./js/app.ts'],
 
   output: {
     path: path.resolve(__dirname, 'build'),
