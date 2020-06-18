@@ -1,6 +1,7 @@
 import '../config.xml'
 import '../css/style.scss'
-import './suncalc.js'
+
+import suncalc from 'suncalc'
 
 /*
  * Copyright (c) 2015 Samsung Electronics Co., Ltd. All rights reserved.
@@ -59,7 +60,7 @@ import './suncalc.js'
                          "-750px -1840px",
         ];
 
-        var illumination = window.SunCalc.getMoonIllumination(toJsDate(tizen.time.getCurrentDateTime()));
+        var illumination = suncalc.getMoonIllumination(toJsDate(tizen.time.getCurrentDateTime()));
 
         var position = positions[Math.round(positions.length * illumination.phase)];
         var element = document.querySelector("#background-moon");
