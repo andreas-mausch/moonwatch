@@ -57,7 +57,13 @@ const updateTime = () => {
   rotateElement("hand-main-minute", (minute + second / 60) * 6);
   rotateElement("hand-main-second", second * 6);
 
+  const date = document.querySelector("#date") as HTMLElement;
+  date.innerText = datetime.getDate();
+
   updateMoonPhase();
+
+  const background = document.querySelector("#background-moon") as HTMLElement;
+  background.style.visibility = 'visible';
 }
 
 const bindEvents = () => {
