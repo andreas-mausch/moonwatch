@@ -60,7 +60,7 @@ import suncalc from 'suncalc'
         element.style.backgroundPosition = position;
     }
 
-    function toJsDate(tzDate: any) {
+    function toJsDate(tzDate: TZDate) {
         return new Date(tzDate.getFullYear(), tzDate.getMonth(), tzDate.getDate(), tzDate.getHours(), tzDate.getMinutes(), tzDate.getSeconds(), tzDate.getMilliseconds());
     }
 
