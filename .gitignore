@@ -1,3 +1,5 @@
 .settings/
 .sign/
+build/
+node_modules/
 MoonWatch.wgt

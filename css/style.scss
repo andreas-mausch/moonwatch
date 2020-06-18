@@ -15,7 +15,7 @@ html, body {
     width: 100%;
     height: 100%;
     background-color: black;
-    background-image: url("../image/moon_phases_image.jpg");
+    background-image: url("../assets/images/moon_phases_image.jpg");
     background-size: 1500px;
     background-position: -1110px -1840px;
 }
@@ -32,7 +32,7 @@ html, body {
     top: 0px;
     width: 15px;
     height: 360px;
-    background-image: url("../image/watch_hand_hour.png");
+    background-image: url("../assets/images/watch_hand_hour.png");
     background-position: center top;
     background-size: contain;
 }
@@ -43,18 +43,18 @@ html, body {
     top: 0px;
     width: 16px;
     height: 360px;
-    background-image: url("../image/watch_hand_minute.png");
+    background-image: url("../assets/images/watch_hand_minute.png");
     background-position: center top;
     background-size: contain;
 }
 
 #hand-main-second {
     position: absolute;
-    left: 172Px;
+    left: 172px;
     top: 0px;
     width: 16px;
     height: 360px;
-    background-image: url("../image/watch_hand_second.png");
+    background-image: url("../assets/images/watch_hand_second.png");
     background-position: center top;
     background-size: contain;
 }

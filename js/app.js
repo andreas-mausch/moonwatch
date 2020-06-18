@@ -1,3 +1,7 @@
+import '../config.xml'
+import '../css/style.scss'
+import './suncalc.js'
+
 /*
  * Copyright (c) 2015 Samsung Electronics Co., Ltd. All rights reserved.
  *
