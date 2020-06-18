@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf ./build",
-    "lint": "eslint ./js/ --max-warnings=0",
+    "lint": "eslint ./source/ --max-warnings=0",
     "build": "webpack --mode=production",
     "package": "tizen package --type wgt -- ./build/",
     "install": "tizen install -n ./build/moonwatch.wgt",
