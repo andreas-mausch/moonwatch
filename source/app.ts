@@ -1,6 +1,7 @@
 import '../config.xml';
 import '../css/style.scss';
 import '../tizen/tizenMock';
+import { TZDate } from './tizen';
 
 import moonPhase from './moonPhase';
 
@@ -27,7 +28,7 @@ const updateDate = (date: Date) => {
 }
 
 const updateTime = () => {
-  const datetime = tizen.time.getCurrentDateTime(),
+  const datetime = global.tizen.time.getCurrentDateTime(),
       hour = datetime.getHours(),
       minute = datetime.getMinutes(),
       second = datetime.getSeconds();
@@ -52,7 +53,7 @@ const bindEvents = () => {
   });
 
   // Add eventListener to update the screen when the time zone is changed
-  tizen.time.setTimezoneChangeListener(() => {
+  global.tizen.time.setTimezoneChangeListener(() => {
       updateTime();
   });
 

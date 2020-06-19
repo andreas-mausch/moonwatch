@@ -1,3 +1,5 @@
+import { TZDate } from "../source/tizen";
+
 if (process.env.NODE_ENV === 'development') {
   global.tizen = {
     time: {
