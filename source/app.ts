@@ -27,6 +27,20 @@ const updateDate = (date: Date) => {
   dayElement.innerText = date.toLocaleDateString(undefined, { weekday: 'short' }).toUpperCase();
 }
 
+const updateColor = (month: number) => {
+  const filter = `hue-rotate(${360 / (month + 1)}deg)`;
+
+  [
+    '.date',
+    '#hand-main-hour',
+    '#hand-main-minute',
+    '#hand-main-second'
+  ].forEach((selector) => {
+    const element = document.querySelector(selector) as HTMLElement;
+    element.style.filter = filter;
+  })
+}
+
 const updateTime = () => {
   const datetime = global.tizen.time.getCurrentDateTime(),
       hour = datetime.getHours(),
@@ -39,6 +53,7 @@ const updateTime = () => {
 
   updateDate(toJsDate(datetime));
   updateMoonPhase(toJsDate(datetime));
+  updateColor(datetime.getMonth())
 
   const background = document.querySelector("#background-moon") as HTMLElement;
   background.style.visibility = 'visible';
