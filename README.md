@@ -16,6 +16,12 @@ This project uses npm, webpack, typescript, scss and eslint (heavily inspired by
 npm run clean
 ```
 
+### Develop (build and watch files)
+
+```bash
+npm run dev
+```
+
 ### Build
 
 ```bash

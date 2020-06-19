@@ -8,6 +8,7 @@
     "clean": "rimraf ./build",
     "lint": "eslint ./source/ --max-warnings=0",
     "test": "jest",
+    "dev": "webpack --mode=development --watch",
     "build": "webpack --mode=production",
     "package": "tizen package --type wgt -- ./build/",
     "install": "tizen install -n ./build/moonwatch.wgt",
