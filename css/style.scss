@@ -67,14 +67,9 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 120%;
   position: absolute;
-  left: 123px;
+  left: 125px;
   bottom: 40px;
-
-  #day,
-  #date,
-  .seperator {
-    display: inline-block;
-  }
+  display: flex;
 
   #day {
     width: 50px;
