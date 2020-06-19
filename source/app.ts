@@ -12,10 +12,9 @@ const toJsDate = (tzDate: TZDate) => {
   return new Date(tzDate.getFullYear(), tzDate.getMonth(), tzDate.getDate(), tzDate.getHours(), tzDate.getMinutes(), tzDate.getSeconds(), tzDate.getMilliseconds());
 }
 
-const updateMoonPhase = () => {
-  const position = moonPhase(toJsDate(tizen.time.getCurrentDateTime()))
+const updateMoonPhase = (date: Date) => {
   const element = document.querySelector("#background-moon") as HTMLElement;
-  element.style.backgroundPosition = position;
+  element.style.backgroundPosition = moonPhase(date);
 }
 
 const updateTime = () => {
@@ -31,7 +30,7 @@ const updateTime = () => {
   const date = document.querySelector("#date") as HTMLElement;
   date.innerText = datetime.getDate();
 
-  updateMoonPhase();
+  updateMoonPhase(toJsDate(datetime));
 
   const background = document.querySelector("#background-moon") as HTMLElement;
   background.style.visibility = 'visible';
