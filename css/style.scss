@@ -62,19 +62,26 @@ body {
   background-size: contain;
 }
 
-#date {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 40px;
-  border: 1px solid rgb(51, 127, 255);
-  background-color: black;
+.date {
   color: rgb(51, 127, 255);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: bold;
   font-size: 120%;
-  margin: 0 auto;
-  width: 40px;
-  text-align: center;
-  padding: 3px;
+  position: absolute;
+  left: 123px;
+  bottom: 40px;
+
+  #day,
+  #date,
+  .seperator {
+    display: inline-block;
+  }
+
+  #day {
+    width: 50px;
+    text-align: right;
+  }
+
+  .seperator {
+    margin: 0 3px;
+  }
 }

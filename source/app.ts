@@ -17,6 +17,14 @@ const updateMoonPhase = (date: Date) => {
   element.style.backgroundPosition = moonPhase(date);
 }
 
+const updateDate = (date: Date) => {
+  const dateElement = document.querySelector("#date") as HTMLElement;
+  dateElement.innerText = date.getDate().toString();
+
+  const dayElement = document.querySelector("#day") as HTMLElement;
+  dayElement.innerText = date.toLocaleDateString(undefined, { weekday: 'short' }).toUpperCase();
+}
+
 const updateTime = () => {
   const datetime = tizen.time.getCurrentDateTime(),
       hour = datetime.getHours(),
@@ -27,9 +35,7 @@ const updateTime = () => {
   rotateElement("hand-main-minute", (minute + second / 60) * 6);
   rotateElement("hand-main-second", second * 6);
 
-  const date = document.querySelector("#date") as HTMLElement;
-  date.innerText = datetime.getDate();
-
+  updateDate(toJsDate(datetime));
   updateMoonPhase(toJsDate(datetime));
 
   const background = document.querySelector("#background-moon") as HTMLElement;
