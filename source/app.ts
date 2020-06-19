@@ -1,10 +1,11 @@
-import '../config.xml'
-import '../css/style.scss'
+import '../config.xml';
+import '../css/style.scss';
+import '../tizen/tizenMock';
 
-import moonPhase from './moonPhase'
+import moonPhase from './moonPhase';
 
 const rotateElement = (elementID: string, angle: number) => {
-  const element = document.querySelector("#" + elementID) as HTMLElement
+  const element = document.querySelector("#" + elementID) as HTMLElement;
   element.style.transform = "rotate(" + angle + "deg)";
 }
 
@@ -51,9 +52,11 @@ const bindEvents = () => {
   });
 
   // Add eventListener to update the screen when the time zone is changed
-  tizen.time.setTimezoneChangeListener(function() {
+  tizen.time.setTimezoneChangeListener(() => {
       updateTime();
   });
+
+  updateTime();
 }
 
 window.onload = () => {
