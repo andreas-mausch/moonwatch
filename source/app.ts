@@ -28,7 +28,7 @@ const updateDate = (date: Date) => {
 }
 
 const updateColor = (month: number) => {
-  const filter = `hue-rotate(${360 / (month + 1)}deg)`;
+  const filter = `hue-rotate(${360 / 12 * (month + 1)}deg)`;
 
   [
     '.date',
@@ -37,7 +37,7 @@ const updateColor = (month: number) => {
     '#hand-main-second'
   ].forEach((selector) => {
     const element = document.querySelector(selector) as HTMLElement;
-    element.style.filter = filter;
+    element.style.webkitFilter = filter;
   })
 }
 
