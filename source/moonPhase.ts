@@ -3,7 +3,6 @@ import suncalc from 'suncalc'
 export default (date: Date): string => {
   const positions = [
     "-1110px -1840px",
-    "-45px -50px",
     "-405px -50px",
     "-760px -50px",
     "-1120px -50px",
@@ -14,7 +13,6 @@ export default (date: Date): string => {
     "-35px -770px",
     "-390px -770px",
     "-750px -770px",
-    "-1110px -770px",
     "-35px -1125px",
     "-390px -1125px",
     "-750px -1125px",
@@ -29,8 +27,7 @@ export default (date: Date): string => {
   ];
 
   const illumination = suncalc.getMoonIllumination(date);
-  const phase = illumination.phase + 0.5 / positions.length
-  let index = Math.round(positions.length * phase)
+  let index = Math.round(positions.length * illumination.phase)
   if (index >= positions.length) {
     index = 0
   }
