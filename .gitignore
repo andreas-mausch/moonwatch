@@ -1,5 +1,6 @@
 .settings/
 .sign/
+.vagrant/
 build/
 node_modules/
 MoonWatch.wgt
