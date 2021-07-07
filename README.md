@@ -70,6 +70,20 @@ sdb connect 192.168.1.104:26101
 sdb get-state
 ```
 
+### Signing Certificate
+
+For installing your app on a real device, you need to register a certificate in your Samsung Developer Account.
+Unfortunately, there seems to be no way to do it via CLI.
+
+Therefore you need to register a certificate using the Tizen Studio manually.
+This is a one-time task though, and you can re-use the generated certificates with the `sdb` and `tizen` commands.
+
+You can use this command (run in `sdb shell`) to obtain the Watch' DUID:
+
+```bash
+/opt/etc/duid-gadget anystring
+```
+
 ### Vagrant
 
 If you prefer to not litter your system you can use Vagrant to keep Tizen Studio in a virtual box
