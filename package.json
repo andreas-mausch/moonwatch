@@ -11,7 +11,7 @@
     "dev": "webpack --mode=development --watch",
     "build": "webpack --mode=production",
     "tizen:package": "tizen package --type wgt -- ./build/",
-    "tizen:install": "tizen install -n ./build/moonwatch.wgt",
+    "tizen:install": "tizen install --name ./build/moonwatch.wgt",
     "tizen:run": "tizen run -p $npm_package_tizenPackage"
   },
   "dependencies": {
