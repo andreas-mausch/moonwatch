@@ -56,3 +56,74 @@ It contains some base64 credentials:
 ```
 
 Just to share it, this is `4fb7fnf3np:54C4FCDA20982ECFAAA76B85EF58AE11` in plain text.
+
+# Generate an author CSR
+
+Format: PKCS#10  
+Keypair algorithm: RSA 2048 bit
+
+The private key is stored as `.pri` file and is encrypted via `PBEWithSHA1AndDESede` (which is equivalent to `PBE-SHA1-3DES`).
+
+```
+CN=<username>
+OU=<department>
+O=<organization>
+L=<city>
+S=<state>
+C=<country>
+```
+
+## Generate keypair via openssl
+
+```
+openssl genrsa -out key.pem 2048
+openssl rsa -in key.pem -outform PEM -pubout -out key.pem.pub
+```
+
+## Generate CSR via openssl
+
+```
+openssl req -new -key key.pem -out certificate.csr
+```
+
+# Obtain Access Token
+
+Go to this URL in the browser, and login with your Samsung credentials:
+
+```
+https://account.samsung.com/accounts/TDC/signInGate?clientId=4fb7fnf3np&tokenType=TOKEN
+```
+
+(taken from `SigninDialog.loginUrl`)
+
+Your response will look like this:
+
+```json
+{
+   "access_token":"gIzkyquITu",
+   "token_type":"bearer",
+   "access_token_expires_in":"863909",
+   "refresh_token":"-1",
+   "refresh_token_expires_in":"-1",
+   "userId":"xxg0twjx1a",
+   "client_id":"4fb7fnf3np",
+   "inputEmailID":"gear-certificate@protonmail.com",
+   "api_server_url":"eu-auth2.samsungosp.com",
+   "auth_server_url":"eu-auth2.samsungosp.com",
+   "close":true,
+   "closedAction":"signInSuccess"
+}
+```
+
+I don't really understand the website does. It does a CSRF POST to https://account.samsung.com/accounts/TDC/signInProc?v=1633174758941,
+but the password is client-side hashed or encrypted already.
+
+# Request the Certificate
+
+TODO: Show the decompiled Java code
+
+![generated-certificate](generated-certificate.png)
+
+# Convert the Certificate, the CA and your key to a .p12 archive
+
+TODO
