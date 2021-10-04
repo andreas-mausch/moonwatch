@@ -75,15 +75,15 @@ C=<country>
 
 ## Generate keypair via openssl
 
-```
+```bash
 openssl genrsa -out key.pem 2048
 openssl rsa -in key.pem -outform PEM -pubout -out key.pem.pub
 ```
 
 ## Generate CSR via openssl
 
-```
-openssl req -new -key key.pem -out certificate.csr
+```bash
+openssl req -new -key key.pem -out author.csr
 ```
 
 # Obtain Access Token
@@ -123,7 +123,11 @@ You need both for the next step.
 
 # Request the Certificate
 
-TODO: Show the decompiled Java code
+```bash
+curl -v -X POST https://dev.tizen.samsung.com:443/apis/v2/authors -F access_token=<ACCESS_TOKEN> -F user_id=<USER_ID> -F csr=@author.csr
+```
+
+(See also *GenerateCertificate.java*.)
 
 ![generated-certificate](generated-certificate.png)
 
