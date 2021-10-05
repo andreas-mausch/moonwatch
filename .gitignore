@@ -13,3 +13,6 @@ node_modules/
 
 MoonWatch.iml
 MoonWatch.wgt
+
+!certificates/ca/gear_test_author_CA.cer
+!certificates/ca/samsung_tizen_dev_public2.crt
