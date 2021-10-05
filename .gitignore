@@ -11,4 +11,5 @@ node_modules/
 **/*.pem
 **/*.pem.pub
 
+MoonWatch.iml
 MoonWatch.wgt
