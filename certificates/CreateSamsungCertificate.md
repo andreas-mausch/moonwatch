@@ -87,7 +87,7 @@ openssl rsa -in author.key.pem -outform PEM -pubout -out author.key.pem.pub
 ## Generate CSR via openssl
 
 ```bash
-openssl req -new -key author.key.pem -out author.csr -subj "/C=DE/L=Hamburg/O=gear-certificate/CN=gear-certificate@protonmail.com"
+openssl req -new -key author.key.pem -out author.csr -subj "/CN=gear-certificate@protonmail.com"
 ```
 
 # Obtain Access Token
@@ -139,11 +139,18 @@ curl -v -X POST https://dev.tizen.samsung.com:443/apis/v2/authors -F access_toke
 
 ```bash
 cat author.crt ca/gear_test_author_CA.cer > author-and-ca.crt
-openssl pkcs12 -export -out author.p12 -inkey author.key.pem -in author-and-ca.crt -name UserCertificate
+openssl pkcs12 -export -out author.p12 -inkey author.key.pem -in author-and-ca.crt -name usercertificate
 ```
 
 # Generate a distributor CSR
 
-TODO
+Replace your DUID (*2.0...*) with the one of your device.
 
-DUID etc.
+```bash
+openssl genrsa -out distributor.key.pem 2048
+openssl rsa -in distributor.key.pem -outform PEM -pubout -out distributor.key.pem.pub
+openssl req -new -key distributor.key.pem -out distributor.csr -subj "/CN=TizenSDK" -addext "subjectAltName = URI:URN:tizen:packageid=,URI:URN:tizen:deviceid=<DEVICE_ID>"
+curl -v -X POST https://dev.tizen.samsung.com:443/apis/v2/distributors -F access_token=<ACCESS_TOKEN> -F user_id=<USER_ID> -F privilege_level=Public -F developer_type=Individual -F csr=@distributor.csr --output distributor.crt
+cat distributor.crt ca/samsung_tizen_dev_public2.crt > distributor-and-ca.crt
+openssl pkcs12 -export -out distributor.p12 -inkey distributor.key.pem -in distributor-and-ca.crt -name usercertificate
+```
