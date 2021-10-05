@@ -9,7 +9,7 @@ import java.net.URL;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
-public class Main {
+public class GenerateCertificate {
 
     public static final String AUTHOR_CSR = "author.csr";
 
@@ -22,7 +22,7 @@ public class Main {
         sun.net.www.protocol.http.HttpURLConnection.level=ALL
         sun.net.www.protocol.https.HttpsURLConnectionImpl.level=ALL
          */
-        new Main().fetchCRT(
+        new GenerateCertificate().fetchCRT(
                 "https://dev.tizen.samsung.com:443/apis/v2/authors",
                 "userId",
                 "accessToken",
