@@ -2,6 +2,10 @@
 export type TZDate = any;
 
 declare global {
+  interface Window {
+    position: Position?;
+  }
+
   namespace NodeJS {
     interface Global {
       document: Document;

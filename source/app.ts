@@ -75,6 +75,9 @@ const bindEvents = () => {
   document.getElementById("components-main")?.addEventListener("click", () => {
     const overlay = document.getElementById("overlay");
     if (overlay) {
+      if (window.position) {
+        overlay.innerText = `${window.position.coords.latitude}`;
+      }
       overlay.style.visibility = "visible";
 
       setTimeout(() => {
@@ -93,4 +96,13 @@ window.onload = () => {
   setInterval(function() {
       updateTime();
   }, 1000);
+
+  navigator.geolocation.getCurrentPosition(position => {
+    window.position = position;
+    document.getElementById("overlay")!.innerText = `Got position ${window.position}`;
+    document.getElementById("overlay")!.style.visibility = "visible";
+  }, (error) => {
+    document.getElementById("overlay")!.innerText = `Couldn't get position ${error.code}`;
+    document.getElementById("overlay")!.style.visibility = "visible";
+  });
 }
