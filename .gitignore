@@ -4,6 +4,11 @@
 .vagrant/
 build/
 node_modules/
-certificates/author.p12
-certificates/distributor.p12
+
+**/*.p12
+**/*.crt
+**/*.csr
+**/*.pem
+**/*.pem.pub
+
 MoonWatch.wgt
