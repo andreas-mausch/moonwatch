@@ -2,6 +2,7 @@ import '../config.xml';
 import '../css/style.scss';
 import '../tizen/tizenMock';
 import { TZDate } from './tizen';
+import suncalc from 'suncalc'
 
 import moonPhase from './moonPhase';
 
@@ -73,6 +74,15 @@ const hideOverlay = () => {
   }
 }
 
+const formatTime = (date: Date) => date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+const setElementText = (id: string, text: string) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.innerText = text;
+  }
+}
+
 const bindEvents = () => {
   document.addEventListener("visibilitychange", function () {
     const visible = document.visibilityState === 'visible';
@@ -91,7 +101,13 @@ const bindEvents = () => {
     const overlay = document.getElementById("overlay");
     if (overlay) {
       if (window.position) {
-        overlay.innerText = `${window.position.coords.latitude}`;
+        const date = toJsDate(global.tizen.time.getCurrentDateTime());
+        const times = suncalc.getTimes(date, window.position.coords.latitude, window.position.coords.longitude);
+        const moonTimes = suncalc.getMoonTimes(date, window.position.coords.latitude, window.position.coords.longitude);
+        setElementText("sunrise", formatTime(times.sunrise));
+        setElementText("sunset", formatTime(times.sunset));
+        setElementText("moonrise", formatTime(moonTimes.rise));
+        setElementText("moonset", formatTime(moonTimes.set));
       } else {
         overlay.innerText = "Couldn't get position";
       }
