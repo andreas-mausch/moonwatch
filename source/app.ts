@@ -60,10 +60,15 @@ const updateTime = () => {
 }
 
 const bindEvents = () => {
-  // Add an event listener to update the screen immediately when the device wakes up
   document.addEventListener("visibilitychange", function() {
-      if (!document.hidden) {
-          updateTime();
+    const visible = document.visibilityState === 'visible';
+      if (visible) {
+        updateTime();
+
+        const overlay = document.getElementById("overlay");
+        if (overlay) {
+          overlay.style.visibility = "hidden";
+        }
       }
   });
 
