@@ -57,6 +57,10 @@ It contains some base64 credentials:
 
 Just to share it, this is `4fb7fnf3np:54C4FCDA20982ECFAAA76B85EF58AE11` in plain text.
 
+# Extract the CA certificate
+
+Inside the jar, there is a folder res/ca, which contains the certificates for the Samsung CA.
+
 # Generate an author CSR
 
 Format: PKCS#10  
@@ -83,7 +87,7 @@ openssl rsa -in key.pem -outform PEM -pubout -out key.pem.pub
 ## Generate CSR via openssl
 
 ```bash
-openssl req -new -key key.pem -out author.csr
+openssl req -new -key key.pem -out author.csr -subj "/C=DE/L=Hamburg/O=gear-certificate/CN=gear-certificate@protonmail.com"
 ```
 
 # Obtain Access Token
@@ -124,7 +128,7 @@ You need both for the next step.
 # Request the Certificate
 
 ```bash
-curl -v -X POST https://dev.tizen.samsung.com:443/apis/v2/authors -F access_token=<ACCESS_TOKEN> -F user_id=<USER_ID> -F csr=@author.csr
+curl -v -X POST https://dev.tizen.samsung.com:443/apis/v2/authors -F access_token=<ACCESS_TOKEN> -F user_id=<USER_ID> -F csr=@author.csr --output author.crt
 ```
 
 (See also *GenerateCertificate.java*.)
@@ -133,7 +137,10 @@ curl -v -X POST https://dev.tizen.samsung.com:443/apis/v2/authors -F access_toke
 
 # Convert the Certificate, the CA and your key to a .p12 archive
 
-TODO
+```bash
+cat author.crt ca/gear_test_author_CA.cer > author-and-ca.crt
+openssl pkcs12 -export -out author.p12 -inkey key.pem -in author-and-ca.crt -name UserCertificate
+```
 
 # Generate a distributor CSR
 
