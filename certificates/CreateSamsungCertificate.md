@@ -115,10 +115,10 @@ Your response will look like this:
 }
 ```
 
-I don't really understand the website does. It does a CSRF POST to https://account.samsung.com/accounts/TDC/signInProc?v=1633174758941,
+I don't really understand what the website does. It does a CSRF POST to https://account.samsung.com/accounts/TDC/signInProc?v=1633174758941,
 but the password is client-side hashed or encrypted already.
 
-The important bit is: After you logged in, your are presented a JSON response with your `userId` and your `access_token`.
+The important bit is: After you logged in, you are presented a JSON response with your `userId` and your `access_token`.
 You need both for the next step.
 
 # Request the Certificate
