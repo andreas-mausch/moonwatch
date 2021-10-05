@@ -80,14 +80,14 @@ C=<country>
 ## Generate keypair via openssl
 
 ```bash
-openssl genrsa -out key.pem 2048
-openssl rsa -in key.pem -outform PEM -pubout -out key.pem.pub
+openssl genrsa -out author.key.pem 2048
+openssl rsa -in author.key.pem -outform PEM -pubout -out author.key.pem.pub
 ```
 
 ## Generate CSR via openssl
 
 ```bash
-openssl req -new -key key.pem -out author.csr -subj "/C=DE/L=Hamburg/O=gear-certificate/CN=gear-certificate@protonmail.com"
+openssl req -new -key author.key.pem -out author.csr -subj "/C=DE/L=Hamburg/O=gear-certificate/CN=gear-certificate@protonmail.com"
 ```
 
 # Obtain Access Token
@@ -139,7 +139,7 @@ curl -v -X POST https://dev.tizen.samsung.com:443/apis/v2/authors -F access_toke
 
 ```bash
 cat author.crt ca/gear_test_author_CA.cer > author-and-ca.crt
-openssl pkcs12 -export -out author.p12 -inkey key.pem -in author-and-ca.crt -name UserCertificate
+openssl pkcs12 -export -out author.p12 -inkey author.key.pem -in author-and-ca.crt -name UserCertificate
 ```
 
 # Generate a distributor CSR
