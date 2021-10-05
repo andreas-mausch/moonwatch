@@ -72,6 +72,17 @@ const bindEvents = () => {
       updateTime();
   });
 
+  document.getElementById("components-main")?.addEventListener("click", () => {
+    const overlay = document.getElementById("overlay");
+    if (overlay) {
+      overlay.style.visibility = "visible";
+
+      setTimeout(() => {
+        overlay.style.visibility = "hidden";
+      }, 5000);
+    }
+  });
+
   updateTime();
 }
 
