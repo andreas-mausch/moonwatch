@@ -43,9 +43,9 @@ const updateColor = (month: number) => {
 
 const updateTime = () => {
   const datetime = global.tizen.time.getCurrentDateTime(),
-      hour = datetime.getHours(),
-      minute = datetime.getMinutes(),
-      second = datetime.getSeconds();
+    hour = datetime.getHours(),
+    minute = datetime.getMinutes(),
+    second = datetime.getSeconds();
 
   rotateElement("hand-main-hour", (hour + (minute / 60) + (second / 3600)) * 30);
   rotateElement("hand-main-minute", (minute + second / 60) * 6);
@@ -74,17 +74,17 @@ const hideOverlay = () => {
 }
 
 const bindEvents = () => {
-  document.addEventListener("visibilitychange", function() {
+  document.addEventListener("visibilitychange", function () {
     const visible = document.visibilityState === 'visible';
-      if (visible) {
-        updateTime();
-        hideOverlay();
-      }
+    if (visible) {
+      updateTime();
+      hideOverlay();
+    }
   });
 
   // Add eventListener to update the screen when the time zone is changed
   global.tizen.time.setTimezoneChangeListener(() => {
-      updateTime();
+    updateTime();
   });
 
   document.getElementById("components-main")?.addEventListener("click", () => {
@@ -110,8 +110,8 @@ window.onload = () => {
   bindEvents();
 
   // Update the watch hands every second
-  setInterval(function() {
-      updateTime();
+  setInterval(function () {
+    updateTime();
   }, 1000);
 
   navigator.geolocation.getCurrentPosition(position => { window.position = position; });
