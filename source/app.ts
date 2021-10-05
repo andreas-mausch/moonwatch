@@ -59,16 +59,26 @@ const updateTime = () => {
   background.style.visibility = 'visible';
 }
 
+const showOverlay = () => {
+  const overlay = document.getElementById("overlay");
+  if (overlay) {
+    overlay.style.visibility = "visible";
+  }
+}
+
+const hideOverlay = () => {
+  const overlay = document.getElementById("overlay");
+  if (overlay) {
+    overlay.style.visibility = "hidden";
+  }
+}
+
 const bindEvents = () => {
   document.addEventListener("visibilitychange", function() {
     const visible = document.visibilityState === 'visible';
       if (visible) {
         updateTime();
-
-        const overlay = document.getElementById("overlay");
-        if (overlay) {
-          overlay.style.visibility = "hidden";
-        }
+        hideOverlay();
       }
   });
 
@@ -83,10 +93,10 @@ const bindEvents = () => {
       if (window.position) {
         overlay.innerText = `${window.position.coords.latitude}`;
       }
-      overlay.style.visibility = "visible";
+      showOverlay();
 
       setTimeout(() => {
-        overlay.style.visibility = "hidden";
+        hideOverlay();
       }, 5000);
     }
   });
