@@ -92,6 +92,8 @@ const bindEvents = () => {
     if (overlay) {
       if (window.position) {
         overlay.innerText = `${window.position.coords.latitude}`;
+      } else {
+        overlay.innerText = "Couldn't get position";
       }
       showOverlay();
 
@@ -112,12 +114,5 @@ window.onload = () => {
       updateTime();
   }, 1000);
 
-  navigator.geolocation.getCurrentPosition(position => {
-    window.position = position;
-    document.getElementById("overlay")!.innerText = `Got position ${window.position}`;
-    document.getElementById("overlay")!.style.visibility = "visible";
-  }, (error) => {
-    document.getElementById("overlay")!.innerText = `Couldn't get position ${error.code}`;
-    document.getElementById("overlay")!.style.visibility = "visible";
-  });
+  navigator.geolocation.getCurrentPosition(position => { window.position = position; });
 }
