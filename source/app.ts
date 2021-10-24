@@ -3,6 +3,9 @@ import '../css/style.scss';
 import '../tizen/tizenMock';
 import { TZDate } from './tizen';
 import suncalc from 'suncalc'
+import { phase_range, PHASE_FULL } from 'lune'
+import { addDays, format, formatDistance } from 'date-fns'
+import { de } from 'date-fns/locale'
 
 import moonPhase from './moonPhase';
 
@@ -74,7 +77,10 @@ const hideOverlay = () => {
   }
 }
 
-const formatTime = (date: Date) => date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+const formatDateTime = (date: Date) => format(date, 'Pp', { locale: de });
+const formatTime = (date: Date) => format(date, 'p', { locale: de });
+
+const nextFullMoon = (date: Date): Date => phase_range(date, addDays(date, 29), PHASE_FULL)[0];
 
 const setElementText = (id: string, text: string) => {
   const element = document.getElementById(id);
@@ -104,10 +110,15 @@ const bindEvents = () => {
         const date = toJsDate(global.tizen.time.getCurrentDateTime());
         const times = suncalc.getTimes(date, window.position.coords.latitude, window.position.coords.longitude);
         const moonTimes = suncalc.getMoonTimes(date, window.position.coords.latitude, window.position.coords.longitude);
+        const fullMoon = nextFullMoon(date);
+        const nextFullMoonHumanized = formatDistance(fullMoon, date, { addSuffix: true, locale: de });
+
         setElementText("sunrise", formatTime(times.sunrise));
         setElementText("sunset", formatTime(times.sunset));
         setElementText("moonrise", formatTime(moonTimes.rise));
         setElementText("moonset", formatTime(moonTimes.set));
+        setElementText("nextFullMoon", formatDateTime(fullMoon));
+        setElementText("nextFullMoonHumanized", nextFullMoonHumanized);
       } else {
         overlay.innerText = "Couldn't get position";
       }
